@@ -59,7 +59,6 @@ void merge(int* X, int n, int* tmp) {
 
 void mergesort(int* X, int n, int* tmp)
 {
-    if (n < 2) return;
 
 #pragma omp task firstprivate (X, n, tmp)
     mergesort(X, n / 2, tmp);
@@ -88,7 +87,6 @@ int main()
     start = omp_get_wtime();
 #pragma omp parallel
     {
-#pragma omp single
         mergesort(data, n, tmp);
     }
     stop = omp_get_wtime();
